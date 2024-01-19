@@ -1,0 +1,76 @@
+1. The libraries and packages you need for a Node.js application can vary depending on the specific requirements of your project.
+However, in any project I would add some code formatting tools like (prettier), code analyzer (ESLint) and some kind of code inspection (SonarCube) for example.
+Usually, for the backend (express), I prefer to use ORMs (TYPEORM, Prisma). Some docs tools (SWAGGER).
+in case of validation needed (JOI, ZOD).
+Jest is my choice for the tests in most cases.
+The most used are: Jest, ESLint, express, joi, zod
+
+2. HTTP server is an option when building traditional web applications, RESTful APIs. 
+If your application requires handling HTTP requests and responses and doesn't have strict real-time communication needs
+
+Serverless functions for scalability, and if your application has varying workloads or event-driven architecture.
+This is a good choice for the microservices too.
+
+Web Sockets in case of real-time communication between the server and clients.
+Something like chat app or any application where live updates are required.
+
+3. Fully Functional programming (in my case) often used for simple solutions.
+Functions are easy to test, makes code more modular.
+Just a good way to write a service (microservice) (or part of a service) with a few responsibilities.
+Not sure this is a good option for a monolith, product-scale application (Never had such experience)
+ 
+OOP can help us in a larger projects. We can make use of classes for modeling entities and their behavior.
+OOP concepts like encapsulation and inheritance allows us to write reusable & scalable code.
+If your application has complex state that needs to be encapsulated and managed along with associated behavior the OOP looks the best.
+
+In my previous projects, people like to mix FP and OOP to use strengths of both.
+So, the different parts for the app can be written in different way, depends on the complexity and requirements.
+
+4. Middleware is a function that allows you to operate in the middle the process.
+Usually middle is used to process the data and take the next step or reject the execution of function/handler.
+Also middleware can have a context, may also read and modify this context if this is a case.
+Middleware can be used to trigger side effects like logging, statistics track. 
+In example with the express.js we can use middle for things like (authentication, authorization, validation, logging, error handling).
+the context in express middleware is the request object, so we can modify it to pass the data to next middleware functions to make use of them.
+
+5. JavaScript is a prototype-based language, and it doesn't have traditional classes.
+The class inheritance mechanism builds on top of prototypes.
+In short, when we create a class (Animal f.e.) under the hood class inherits the Object`s prototype.
+When we inherits the class (Cat) from (Animal class) the child prototype will be linked to the parent prototype.
+So when we will try to call the method from child class (Cat) if the method is not defined in our class
+the JavaScript will go down the prototype chain and looks for the method in every prototype in the chain.
+This will go on until we reach the Object`s prototype (Object.prototype).
+
+6. Type narrowing is a TypeScript feature that allows you to refine the type of a variable within a certain code block based on certain conditions.
+In typescript we can use the 'is' type operator to declare the type refine (usually as function`s return type).
+in this case the function must return a boolean value, that will tell that our input of the proper type or not.
+Inside the function can be simple 'typeof' check or any logical 'if' statement, but the types will be treated properly with 'is' type operator.
+
+7. NodeJS provides asynchronism and concurrency through its event-driven, non-blocking I/O architecture.
+NodeJS use an event loop. 
+The event loop checks for events (I/O operations, timers, incoming requests) in the event queue and executes their corresponding callback functions.
+Instead of creating a new thread for each incoming connection, NodeJS leverages the event loop to handle multiple requests in a non-blocking manner.
+NodeJS relies on the 'Libuv' library to handle asynchronous operations and manage the event loop. Libuv provides platform-specific implementations for asynchronous tasks.
+
+8. A promise a JavaScript Object that represents the asynchronous operation (eventual result, success or failure).
+A promise is a handy options to deal with async functions.
+With the promises we can write clear code avoiding callback-hell.
+Use traditional try/catch blocks to handle errors.
+Use 'thenable' promise chain if needed.
+Make use of Promise utils like 'all', 'race', etc.
+
+9. The code build tools I would chose for the cloud: ESBuild, Vite | Rollup | WebPack.
+
+10. AWS: SQS, SNS, StepFunctions.
+SQS a simple queue message service that allows send and retrieve messages from the queue (Messages consumed by a single consumer).
+SNS allows broadcast messages to multiple subscribers (Messages consumed by multiple consumers).
+StepFunctions the kind of orchestration tool for functions that use state machines (AWS stateMachines).
+With the step functions we can describe the flow of functions execution and pass the results between them.
+
+11. For the small apps I used PM2 for managing and load monitor stats.
+For larger projects: LogStash, DataDog (AWS integration), CloudWatch for AWS.
+
+12. Secondary indexes in DynamoDB can be used to retrieve the data by Non-Key attribute.
+Without secondary indexes the query can scan the entire table.
+Secondary indexes supports sorting and filtering neither.
+In general secondary indexes provide additional target to access the data inside the DynamoDB without dull table scan.

@@ -1,3 +1,4 @@
+import { UserDB } from "types/databaseTypes";
 import { dbClient, TableNames } from "../common/db";
 import { Role } from "./role";
 
@@ -12,13 +13,13 @@ export class User {
     this.groupId = input.group_id;
   }
 
-  static async getById(id: string) {
-    const res = (await dbClient.get({ TableName: TableNames.users, Key: { id } }).promise()).Item;
+  static async getById(id: string): Promise<User> {
+    const res = await dbClient.get({ TableName: TableNames.users, Key: { id } }).promise();
 
-    if (!res?.Item) {
+    if (!res.Item) {
       throw new Error("User does not exist");
     }
 
-    return new User(res.Item);
+    return new User(res.Item as UserDB);
   }
 }

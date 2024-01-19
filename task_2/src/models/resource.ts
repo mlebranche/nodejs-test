@@ -1,3 +1,4 @@
+import { ResourceDB } from "types/databaseTypes";
 import { dbClient, TableNames } from "../common/db";
 
 export class Resource {
@@ -12,13 +13,12 @@ export class Resource {
   }
 
   static async getById(id: string) {
-    const res = (await dbClient.get({ TableName: TableNames.resources, Key: { id } }).promise())
-      .Item;
+    const res = await dbClient.get({ TableName: TableNames.resources, Key: { id } }).promise();
 
-    if (!res?.Item) {
+    if (!res.Item) {
       throw new Error("Resource does not exist");
     }
 
-    return new Resource(res.Item);
+    return new Resource(res.Item as ResourceDB);
   }
 }
